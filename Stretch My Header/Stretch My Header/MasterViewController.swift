@@ -13,6 +13,10 @@ class MasterViewController: UITableViewController {
     
     @IBOutlet var picHeaderView: UIImageView!
     
+    var cloud1 : UIImageView!
+    
+    var cloud2 : UIImageView!
+    
     let kTableHeaderHeight:CGFloat = 215
     
     
@@ -76,9 +80,34 @@ class MasterViewController: UITableViewController {
             newsItems.append(seventh)
         let eighth = NewsItem(newCategory: .Europe, newHeadline: "'One million babies' created by EU student exchanges")
             newsItems.append(eighth)
+            
+        cloud1 = UIImageView(frame: CGRectMake(picHeaderView.bounds.origin.x + 50, picHeaderView.bounds.origin.y + 50, 50, 50));
+        let image1 = UIImage(named: "bg-sunny-cloud-3");
+        cloud1.image = image1;
+        picHeaderView.addSubview(cloud1);
+            
+        cloud2 = UIImageView(frame: CGRectMake(picHeaderView.bounds.origin.x + 170, picHeaderView.bounds.origin.y + 100, 50, 50));
+        let image2 = UIImage(named: "bg-sunny-cloud-3");
+        cloud2.image = image2;
+        picHeaderView.addSubview(cloud2);
+
+            
         }
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        UIView.animateWithDuration(4, delay: 0.5, options: UIViewAnimationOptions.Repeat , animations: {
+            self.cloud1.frame.origin.x += CGRectGetWidth(self.picHeaderView.frame)
+            self.cloud2.frame.origin.x += CGRectGetWidth(self.picHeaderView.frame)
+            }, completion: nil)
+        
+        
+    
+        
+    }
+    
+    
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         updateHeaderView()
     }
